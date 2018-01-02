@@ -1,0 +1,15 @@
+1 NorthDoor*2 5 policy*5 10 library*3 5 classbuild
+2 policy*1 5 NorthDoor
+3 classbuild*1 5 NorthDoor*4 3 lab
+4 lab*3 3 classbuild*6 3 mei_guang*5 2 library
+5 library*1 10 NorthDoor*4 2 lab*6 3 mei_guang*8 10 xu_ri_yuan*11 5 EastDoor
+6 mei_guang*4 3 lab*5 3 library*7 5 chang_zhi
+7 chang_zhi*6 5 mei_guang*8 3 xu_ri_yuan
+8 xu_ri_yuan*7 3 chang_zhi*5 10 library*9 2 chang_si*10 3 big_cao_chang
+9 chang_si*8 2 xu_ri_yuan*10 2 big_cao_chang
+10 big_cao_chang*9 3 chang_si*8 3 xu_ri_yuan*11 1 EastDoor
+11 WestDoor*10 1 big_cao_chang*5 5 library*12 2 WestDoor
+12 WestDoor*13 3 reletive_build*15 5 WestClassBuild*14 3 dong_sheng_yuan
+13 reletive_build*12 3 WestDoor
+14 dong_sheng_yuan*15 3 WestClassBuild*12 3 WestDoor
+15 WestClassBuild*14 3 dong_sheng_yuan*12 5 WestDoor
