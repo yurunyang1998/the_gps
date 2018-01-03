@@ -115,6 +115,9 @@ void Allmap::addArcnode() {
         return;
     }
 
+    Arcnode zhan_wei_jie_dian(9999,9999,"zhanwei");
+    map.push_back(zhan_wei_jie_dian);
+
     int linesnum = vector_of_line.size();
     int num = 15;
     vector<string>::size_type iter;
@@ -130,7 +133,11 @@ void Allmap::addArcnode() {
 
         //Arcnode * new_node = new Arcnode(temp,0,templine2[1]);   //*
         Arcnode new_node(temp,0,templine2[1]);     //这个是头结点
+
+        new_node.add_linknode(-111,-111,"ZhanWeiJieDian");
+
         vector<string>::size_type size ;
+
 
         for(size=1;size<templine.size();size++)
         {
@@ -144,9 +151,69 @@ void Allmap::addArcnode() {
 
         map.push_back(new_node);
     }
-    std::cout <<2<<endl;
-    cout<<map[0].linknode[1].name<<endl;
-    cout <<3<<endl;
-
+        cout<< map[1].linknode.size()<<"     "<<map[1].linknode[1].name <<endl;
 
 }
+
+
+
+///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+
+bool shi_fou_xuan_wan(int path[15][15],int i,int j )
+{
+    int p=0;
+    for(p=0;p<j;p++)
+    {
+        if(path[i][p]==0)
+            return true;
+    }
+    return false;
+}
+
+
+int min(int dict[]){
+
+}
+
+
+
+
+
+
+
+void Allmap::find_the_shortest_way(string beginNode, string endNode) {
+    int path[15][15]={0};
+
+
+    int dist[15]={999};
+    int i=0,j=1;
+    for (i=1;i<16;i++){
+        if(map[i].name==beginNode)
+        {
+            break;
+        }
+    }cout<<i<<endl;
+
+    int k=0;
+    for (k;k<map[i].linknode.size();k++)
+    {
+        dist[map[i].linknode[k].adjvex]=map[i].linknode[k].weight;
+    }
+
+    //for (j;j<map.size();j++)
+     while(shi_fou_xuan_wan(path,i,15)) // 所有顶点都标记过了
+    {
+        if(path[i][j] !=0) {
+            int tempdata = 0;
+            tempdata = dist[map[i].linknode[j].adjvex] + map[i].linknode[j].weight;
+            if (dist[map[i].linknode[j].adjvex] > tempdata)
+                dist[map[i].linknode[j].adjvex] = tempdata;
+            path[i][j] = 1;
+        }
+        j =
+    }
+}
+
+

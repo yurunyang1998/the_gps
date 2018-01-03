@@ -37,7 +37,11 @@ public:
     void readline(string mapfile); //读取mapfile到vector  of line 里面
     void addArcnode(); //建立Arcnodes
 
-public:
+    void find_the_shortest_way(string beginNode,string endNode);
+
+
+
+private:
     std::vector<Arcnode> map;
     std::vector<std::string> vector_of_line;
     int vexnum; //节点数
