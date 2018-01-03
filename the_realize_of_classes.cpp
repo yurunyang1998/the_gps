@@ -161,7 +161,7 @@ void Allmap::addArcnode() {
 //////////////////////////////////////////////////////////////////////
 
 
-bool shi_fou_xuan_wan(int path[15][15],int i,int j )
+bool shi_fou_xuan_wan(int path[15][15],int i,int j )      //判断是否所有点都被标记过了
 {
     int p=0;
     for(p=0;p<j;p++)
@@ -173,18 +173,24 @@ bool shi_fou_xuan_wan(int path[15][15],int i,int j )
 }
 
 
-int min(int dict[]){
 
+
+
+int Allmap::get_adjvex(int x,int k) {
+    int i=1;
+    for(i;i<map[k].linknode.size();i++)
+    {
+        if(x == map[k].linknode[i].adjvex)
+            return i;
+    }
 }
 
 
 
 
 
-
-
 void Allmap::find_the_shortest_way(string beginNode, string endNode) {
-    int path[15][15]={0};
+    int path[][2]={0};
 
     vector<int> dist(15,999);
 
@@ -198,28 +204,37 @@ void Allmap::find_the_shortest_way(string beginNode, string endNode) {
     }
 
     int k=0;
-    for (k;k<map[i].linknode.size();k++)
+    for (k=1;k<=map[i].linknode.size();k++)
     {
         dist[map[i].linknode[k].adjvex]=map[i].linknode[k].weight;
     }
 
-    //for (j;j<map.size();j++)
+    path[i][0] = 1;
      while(shi_fou_xuan_wan(path,i,15)) // 所有顶点都标记过了
     {
-        if(path[i][j] !=1) {
+        if(path[i][j]!=1) {
+
+            vector<int>::iterator iter = std::min_element(dist.begin(),dist.end());
+            j = *iter;
+
+
+
             int tempdata = 0;
-            tempdata = dist[map[i].linknode[j].adjvex] + map[i].linknode[j].weight;
+            if(dist[j]==999)
+                tempdata = map[j].linknode[get_adjvex(j,j)].weight;
+            else
+                tempdata = dist[map[i].linknode[j].adjvex] + map[i].linknode[j].weight;
+
             if (dist[map[i].linknode[j].adjvex] > tempdata)
                 dist[map[i].linknode[j].adjvex] = tempdata;
             path[i][j] = 1;
+
+            //vector<int>::iterator iter = std::min_element(dist.begin(),dist.end());
+            //j = *iter;
         }
-        vector<int>::iterator iter = std::max_element(dist.begin(),dist.end());
-        j = *iter;
-
-    cout<<dist[1];
-
 
     }
-}
 
+    cout<<dist[4];
+}
 
