@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-
+#include "algorithm"
 using  namespace std;
 
 //下面这个是split函数
@@ -151,7 +151,7 @@ void Allmap::addArcnode() {
 
         map.push_back(new_node);
     }
-        cout<< map[1].linknode.size()<<"     "<<map[1].linknode[1].name <<endl;
+        //cout<< map[1].linknode.size()<<"     "<<map[1].linknode[1].name <<endl;
 
 }
 
@@ -186,15 +186,16 @@ int min(int dict[]){
 void Allmap::find_the_shortest_way(string beginNode, string endNode) {
     int path[15][15]={0};
 
+    vector<int> dist(15,999);
 
-    int dist[15]={999};
+    //int dist[15]={999};
     int i=0,j=1;
     for (i=1;i<16;i++){
         if(map[i].name==beginNode)
         {
             break;
         }
-    }cout<<i<<endl;
+    }
 
     int k=0;
     for (k;k<map[i].linknode.size();k++)
@@ -205,14 +206,19 @@ void Allmap::find_the_shortest_way(string beginNode, string endNode) {
     //for (j;j<map.size();j++)
      while(shi_fou_xuan_wan(path,i,15)) // 所有顶点都标记过了
     {
-        if(path[i][j] !=0) {
+        if(path[i][j] !=1) {
             int tempdata = 0;
             tempdata = dist[map[i].linknode[j].adjvex] + map[i].linknode[j].weight;
             if (dist[map[i].linknode[j].adjvex] > tempdata)
                 dist[map[i].linknode[j].adjvex] = tempdata;
             path[i][j] = 1;
         }
-        j =
+        vector<int>::iterator iter = std::max_element(dist.begin(),dist.end());
+        j = *iter;
+
+    cout<<dist[1];
+
+
     }
 }
 

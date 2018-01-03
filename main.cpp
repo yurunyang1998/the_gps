@@ -9,5 +9,6 @@ int main() {
     Allmap mapp;
     mapp.readline("D:\\c++practice\\the_gps\\mapfile.txt");
     mapp.addArcnode();
+    mapp.find_the_shortest_way("library","suibian");
 
 }
